@@ -25,7 +25,11 @@ class TasksController < ApplicationController
 
     event = {
       event_name: 'TaskCreated',
-      data: { public_id: task.public_id, description: task.description }
+      data: {
+        public_id: task.public_id,
+        description: task.description,
+        account_id: task.account.public_id
+      }
     }
 
     Karafka.producer.produce_async(
@@ -44,7 +48,7 @@ class TasksController < ApplicationController
 
     event = {
       event_name: 'TaskCompleted',
-      data: { public_id: task.public_id }
+      data: { public_id: task.public_id, account_id: task.account.public_id }
     }
 
     Karafka.producer.produce_async(
@@ -60,7 +64,11 @@ class TasksController < ApplicationController
 
       event = {
         event_name: 'TaskAssigned',
-        data: { public_id: task.public_id, description: task.description }
+        data: {
+          public_id: task.public_id,
+          description: task.description,
+          account_id: task.account.public_id
+        }
       }
       Karafka.producer.produce_async(
         topic: 'tasks',
