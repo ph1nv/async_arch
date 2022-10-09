@@ -44,6 +44,7 @@ gem "bootsnap", require: false
 
 gem "devise"
 gem "doorkeeper"
+gem "waterdrop"
 
 # Use Sass to process CSS
 # gem "sassc-rails"

@@ -1,0 +1,10 @@
+<%= form_with url: tasks_path, method: :post do |form| %>
+  <div>
+    <p>Description</p>
+    <%= form.text_field(:description) %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

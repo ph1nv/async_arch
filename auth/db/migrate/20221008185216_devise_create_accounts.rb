@@ -13,7 +13,6 @@ class DeviseCreateAccounts < ActiveRecord::Migration[7.0]
       t.string :full_name
       t.string :position
       t.boolean :active, default: true
-      t.integer :role
 
       ## Recoverable
       t.string   :reset_password_token
@@ -43,6 +42,12 @@ class DeviseCreateAccounts < ActiveRecord::Migration[7.0]
 
       t.timestamps null: false
     end
+
+    execute <<-SQL
+      CREATE TYPE account_roles AS ENUM ('admin', 'manager', 'employee');
+    SQL
+
+    add_column :accounts, :role, :account_roles, null: false, default: 'employee'
 
     add_index :accounts, :email,                unique: true
     add_index :accounts, :reset_password_token, unique: true

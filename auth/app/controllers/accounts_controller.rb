@@ -24,21 +24,16 @@ class AccountsController < ApplicationController
         # ----------------------------- produce event -----------------------
         event = {
           event_name: 'AccountUpdated',
-          data: {
-            public_id: @account.public_id,
-            email: @account.email,
-            full_name: @account.full_name,
-            position: @account.position
-          }
+          data: { public_id: @account.public_id, full_name: @account.full_name }
         }
-        # Producer.call(event.to_json, topic: 'accounts-stream')
+        KAFKA_PRODUCER.produce_sync(topic: 'accounts-stream', payload: event.to_json)
 
         if new_role
           event = {
             event_name: 'AccountRoleChanged',
             data: { public_id: @account.public_id, role: @account.role }
           }
-          # Producer.call(event.to_json, topic: 'accounts')
+          KAFKA_PRODUCER.produce_sync(topic: 'accounts', payload: event.to_json)
         end
 
         # --------------------------------------------------------------------
@@ -60,7 +55,7 @@ class AccountsController < ApplicationController
       event_name: 'AccountDeleted',
       data: { public_id: @account.public_id }
     }
-    # Producer.call(event.to_json, topic: 'accounts-stream')
+    KAFKA_PRODUCER.produce_sync(topic: 'accounts-stream', payload: event.to_json)
     # --------------------------------------------------------------------
 
     respond_to do |format|
