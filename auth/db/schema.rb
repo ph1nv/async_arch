@@ -15,6 +15,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_08_195347) do
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
 
+  # Custom types defined in this database.
+  # Note that some types may not work with other database engines. Be careful if changing database.
+  create_enum "account_roles", ["admin", "manager", "employee"]
+
   create_table "accounts", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -22,12 +26,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_08_195347) do
     t.string "full_name"
     t.string "position"
     t.boolean "active", default: true
-    t.integer "role"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.enum "role", default: "employee", null: false, enum_type: "account_roles"
     t.index ["email"], name: "index_accounts_on_email", unique: true
     t.index ["reset_password_token"], name: "index_accounts_on_reset_password_token", unique: true
   end

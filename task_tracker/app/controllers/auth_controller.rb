@@ -3,7 +3,6 @@ class AuthController < ApplicationController
   end
 
   def create
-    debugger
     session[:account] = request.env['omniauth.auth']
     redirect_to '/'
   end

@@ -68,3 +68,5 @@ group :development do
   # gem "spring"
 end
 
+
+gem "karafka", "~> 2.0"
