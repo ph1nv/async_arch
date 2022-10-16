@@ -13,6 +13,7 @@ class Account < ApplicationRecord
   after_create do
     account = self.reload
 
+    # HOMEWORK 3
     # ----------------------------- produce event -----------------------
     event = {
       event_id: SecureRandom.uuid,

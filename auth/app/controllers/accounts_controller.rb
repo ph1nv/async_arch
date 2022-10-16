@@ -21,6 +21,7 @@ class AccountsController < ApplicationController
       new_role = @account.role != account_params[:role] ? account_params[:role] : nil
 
       if @account.update(account_params)
+        # HOMEWORK 3
         # ----------------------------- produce event -----------------------
         event = {
           event_id: SecureRandom.uuid,
@@ -68,6 +69,7 @@ class AccountsController < ApplicationController
   def destroy
     @account.update(active: false) #, disabled_at: Time.now)
 
+    # HOMEWORK 3
     # ----------------------------- produce event -----------------------
     event = {
       event_id: SecureRandom.uuid,
