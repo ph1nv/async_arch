@@ -23,17 +23,35 @@ class AccountsController < ApplicationController
       if @account.update(account_params)
         # ----------------------------- produce event -----------------------
         event = {
+          event_id: SecureRandom.uuid,
+          event_version: 1,
+          event_time: Time.now.to_s,
+          producer: 'auth_service',
           event_name: 'AccountUpdated',
           data: { public_id: @account.public_id, full_name: @account.full_name }
         }
-        KAFKA_PRODUCER.produce_sync(topic: 'accounts-stream', payload: event.to_json)
+
+        result = SchemaRegistry.validate_event(event, 'accounts.updated', version: 1)
+
+        if result.success?
+          KAFKA_PRODUCER.produce_sync(topic: 'accounts-stream', payload: event.to_json)
+        end
 
         if new_role
           event = {
+            event_id: SecureRandom.uuid,
+            event_version: 1,
+            event_time: Time.now.to_s,
+            producer: 'auth_service',
             event_name: 'AccountRoleChanged',
             data: { public_id: @account.public_id, role: @account.role }
           }
-          KAFKA_PRODUCER.produce_sync(topic: 'accounts', payload: event.to_json)
+
+          result = SchemaRegistry.validate_event(event, 'accounts.role_changed', version: 1)
+
+          if result.success?
+            KAFKA_PRODUCER.produce_sync(topic: 'accounts', payload: event.to_json)
+          end
         end
 
         # --------------------------------------------------------------------
@@ -52,10 +70,19 @@ class AccountsController < ApplicationController
 
     # ----------------------------- produce event -----------------------
     event = {
+      event_id: SecureRandom.uuid,
+      event_version: 1,
+      event_time: Time.now.to_s,
+      producer: 'auth_service',
       event_name: 'AccountDeleted',
       data: { public_id: @account.public_id }
     }
-    KAFKA_PRODUCER.produce_sync(topic: 'accounts-stream', payload: event.to_json)
+
+    result = SchemaRegistry.validate_event(event, 'accounts.deleted', version: 1)
+
+    if result.success?
+      KAFKA_PRODUCER.produce_sync(topic: 'accounts-stream', payload: event.to_json)
+    end
     # --------------------------------------------------------------------
 
     respond_to do |format|

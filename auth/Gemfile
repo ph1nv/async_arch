@@ -45,6 +45,7 @@ gem "bootsnap", require: false
 gem "devise"
 gem "doorkeeper"
 gem "waterdrop"
+gem "schema_registry", git: "https://github.com/davydovanton/event_schema_registry.git"
 
 # Use Sass to process CSS
 # gem "sassc-rails"

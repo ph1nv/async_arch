@@ -20,10 +20,15 @@ class TasksController < ApplicationController
     employee = Account.find(Account.where(role: 'employee').pluck(:id).sample)
     task = Task.create!(
       description: params[:description],
+      jira_id: params[:jira_id],
       account: employee
     )
 
     event = {
+      event_id: SecureRandom.uuid,
+      event_version: 2,
+      event_time: Time.now.to_s,
+      producer: 'auth_service',
       event_name: 'TaskCreated',
       data: {
         public_id: task.public_id,
@@ -32,12 +37,18 @@ class TasksController < ApplicationController
       }
     }
 
-    Karafka.producer.produce_async(
-      topic: 'tasks',
-      payload: event.to_json
-    )
+    result = SchemaRegistry.validate_event(event, 'tasks.created', version: 2)
 
-    redirect_to :tasks
+    if result.success?
+      Karafka.producer.produce_async(
+        topic: 'tasks',
+        payload: event.to_json
+      )
+
+      redirect_to :tasks
+    else
+      # handle error
+    end
   end
 
   def edit
@@ -47,14 +58,22 @@ class TasksController < ApplicationController
     task.update(status: params[:status])
 
     event = {
+      event_id: SecureRandom.uuid,
+      event_version: 1,
+      event_time: Time.now.to_s,
+      producer: 'auth_service',
       event_name: 'TaskCompleted',
       data: { public_id: task.public_id, account_id: task.account.public_id }
     }
 
-    Karafka.producer.produce_async(
-      topic: 'tasks',
-      payload: event.to_json
-    )
+    result = SchemaRegistry.validate_event(event, 'tasks.completed', version: 1)
+
+    if result.success?
+      Karafka.producer.produce_async(
+        topic: 'tasks',
+        payload: event.to_json
+      )
+    end
   end
 
   def shuffle
@@ -63,6 +82,10 @@ class TasksController < ApplicationController
       Task.update!(account_id: employees.sample)
 
       event = {
+        event_id: SecureRandom.uuid,
+        event_version: 1,
+        event_time: Time.now.to_s,
+        producer: 'auth_service',
         event_name: 'TaskAssigned',
         data: {
           public_id: task.public_id,
@@ -70,10 +93,15 @@ class TasksController < ApplicationController
           account_id: task.account.public_id
         }
       }
-      Karafka.producer.produce_async(
-        topic: 'tasks',
-        payload: event.to_json
-      )
+
+      result = SchemaRegistry.validate_event(event, 'tasks.assigned', version: 1)
+
+      if result.success?
+        Karafka.producer.produce_async(
+          topic: 'tasks',
+          payload: event.to_json
+        )
+      end
     end
   end
 
