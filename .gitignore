@@ -1,2 +1,6 @@
 auth/tmp/*
+auth/config/master.key
 task_tracker/tmp/*
+task_tracker/config/master.key
+accounting/tmp/*
+accounting/config/master.key
