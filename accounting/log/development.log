@@ -1,0 +1,36 @@
+Started GET "/" for ::1 at 2022-10-16 18:58:55 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AuthController#temp_page as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering auth/temp_page.html.erb within layouts/application
+  Rendered auth/temp_page.html.erb within layouts/application (Duration: 18.8ms | Allocations: 4500)
+  Rendered layout layouts/application.html.erb (Duration: 482.0ms | Allocations: 91214)
+Completed 200 OK in 505ms (Views: 495.3ms | ActiveRecord: 0.0ms | Allocations: 94752)
+
+
+Started GET "/signin" for ::1 at 2022-10-16 18:59:00 +0300
+Processing by AuthController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering auth/index.html.erb within layouts/application
+  Rendered auth/index.html.erb within layouts/application (Duration: 3.8ms | Allocations: 843)
+  Rendered layout layouts/application.html.erb (Duration: 10.9ms | Allocations: 3131)
+Completed 200 OK in 24ms (Views: 22.8ms | ActiveRecord: 0.0ms | Allocations: 3533)
+
+
+Started POST "/auth/keepa" for ::1 at 2022-10-16 18:59:01 +0300
+Started GET "/auth/keepa/callback?code=To7Jh1cPdW3T858F7KiNwGsuaLh0Do4fnGB-c889qKc&state=8205493b24e1e4369da434028db98e1a57a544bc59214d21" for ::1 at 2022-10-16 18:59:01 +0300
+Processing by AuthController#create as HTML
+  Parameters: {"code"=>"To7Jh1cPdW3T858F7KiNwGsuaLh0Do4fnGB-c889qKc", "state"=>"8205493b24e1e4369da434028db98e1a57a544bc59214d21", "provider"=>"keepa"}
+Redirected to http://localhost:3002/
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms | Allocations: 199)
+
+
+Started GET "/" for ::1 at 2022-10-16 18:59:01 +0300
+Processing by AuthController#temp_page as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering auth/temp_page.html.erb within layouts/application
+  Rendered auth/temp_page.html.erb within layouts/application (Duration: 0.7ms | Allocations: 471)
+  Rendered layout layouts/application.html.erb (Duration: 9.6ms | Allocations: 2778)
+Completed 200 OK in 11ms (Views: 10.2ms | ActiveRecord: 0.0ms | Allocations: 3074)
+
+

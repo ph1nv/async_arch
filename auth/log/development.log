@@ -6325,3 +6325,102 @@ Processing by AccountsController#current as JSON
 Completed 200 OK in 4ms (Views: 0.3ms | ActiveRecord: 0.8ms | Allocations: 1757)
 
 
+Started GET "/oauth/applications" for ::1 at 2022-10-16 18:57:58 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Doorkeeper::ApplicationsController#index as HTML
+  Rendering layout /home/sjnm23/.asdf/installs/ruby/3.1.2/lib/ruby/gems/3.1.0/gems/doorkeeper-5.6.0/app/views/layouts/doorkeeper/admin.html.erb
+  Rendering /home/sjnm23/.asdf/installs/ruby/3.1.2/lib/ruby/gems/3.1.0/gems/doorkeeper-5.6.0/app/views/doorkeeper/applications/index.html.erb within layouts/doorkeeper/admin
+  [1m[36mDoorkeeper::Application Load (1.1ms)[0m  [1m[34mSELECT "oauth_applications".* FROM "oauth_applications" ORDER BY "oauth_applications"."created_at" ASC[0m
+  Rendered /home/sjnm23/.asdf/installs/ruby/3.1.2/lib/ruby/gems/3.1.0/gems/doorkeeper-5.6.0/app/views/doorkeeper/applications/_delete_form.html.erb (Duration: 5.3ms | Allocations: 1278)
+  Rendered /home/sjnm23/.asdf/installs/ruby/3.1.2/lib/ruby/gems/3.1.0/gems/doorkeeper-5.6.0/app/views/doorkeeper/applications/_delete_form.html.erb (Duration: 0.4ms | Allocations: 313)
+  Rendered /home/sjnm23/.asdf/installs/ruby/3.1.2/lib/ruby/gems/3.1.0/gems/doorkeeper-5.6.0/app/views/doorkeeper/applications/index.html.erb within layouts/doorkeeper/admin (Duration: 42.9ms | Allocations: 11797)
+  Rendered layout /home/sjnm23/.asdf/installs/ruby/3.1.2/lib/ruby/gems/3.1.0/gems/doorkeeper-5.6.0/app/views/layouts/doorkeeper/admin.html.erb (Duration: 114.7ms | Allocations: 36999)
+Completed 200 OK in 145ms (Views: 113.8ms | ActiveRecord: 8.0ms | Allocations: 44700)
+
+
+Started GET "/oauth/applications/2/edit" for ::1 at 2022-10-16 18:58:01 +0300
+Processing by Doorkeeper::ApplicationsController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mDoorkeeper::Application Load (1.2ms)[0m  [1m[34mSELECT "oauth_applications".* FROM "oauth_applications" WHERE "oauth_applications"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering layout /home/sjnm23/.asdf/installs/ruby/3.1.2/lib/ruby/gems/3.1.0/gems/doorkeeper-5.6.0/app/views/layouts/doorkeeper/admin.html.erb
+  Rendering /home/sjnm23/.asdf/installs/ruby/3.1.2/lib/ruby/gems/3.1.0/gems/doorkeeper-5.6.0/app/views/doorkeeper/applications/edit.html.erb within layouts/doorkeeper/admin
+  Rendered /home/sjnm23/.asdf/installs/ruby/3.1.2/lib/ruby/gems/3.1.0/gems/doorkeeper-5.6.0/app/views/doorkeeper/applications/_form.html.erb (Duration: 32.0ms | Allocations: 4105)
+  Rendered /home/sjnm23/.asdf/installs/ruby/3.1.2/lib/ruby/gems/3.1.0/gems/doorkeeper-5.6.0/app/views/doorkeeper/applications/edit.html.erb within layouts/doorkeeper/admin (Duration: 37.2ms | Allocations: 4475)
+  Rendered layout /home/sjnm23/.asdf/installs/ruby/3.1.2/lib/ruby/gems/3.1.0/gems/doorkeeper-5.6.0/app/views/layouts/doorkeeper/admin.html.erb (Duration: 43.9ms | Allocations: 6056)
+Completed 200 OK in 68ms (Views: 45.7ms | ActiveRecord: 1.9ms | Allocations: 9344)
+
+
+Started GET "/oauth/applications/2/edit" for ::1 at 2022-10-16 18:58:07 +0300
+Processing by Doorkeeper::ApplicationsController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mDoorkeeper::Application Load (5.7ms)[0m  [1m[34mSELECT "oauth_applications".* FROM "oauth_applications" WHERE "oauth_applications"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering layout /home/sjnm23/.asdf/installs/ruby/3.1.2/lib/ruby/gems/3.1.0/gems/doorkeeper-5.6.0/app/views/layouts/doorkeeper/admin.html.erb
+  Rendering /home/sjnm23/.asdf/installs/ruby/3.1.2/lib/ruby/gems/3.1.0/gems/doorkeeper-5.6.0/app/views/doorkeeper/applications/edit.html.erb within layouts/doorkeeper/admin
+  Rendered /home/sjnm23/.asdf/installs/ruby/3.1.2/lib/ruby/gems/3.1.0/gems/doorkeeper-5.6.0/app/views/doorkeeper/applications/_form.html.erb (Duration: 11.3ms | Allocations: 1958)
+  Rendered /home/sjnm23/.asdf/installs/ruby/3.1.2/lib/ruby/gems/3.1.0/gems/doorkeeper-5.6.0/app/views/doorkeeper/applications/edit.html.erb within layouts/doorkeeper/admin (Duration: 12.7ms | Allocations: 2043)
+  Rendered layout /home/sjnm23/.asdf/installs/ruby/3.1.2/lib/ruby/gems/3.1.0/gems/doorkeeper-5.6.0/app/views/layouts/doorkeeper/admin.html.erb (Duration: 18.1ms | Allocations: 3518)
+Completed 200 OK in 42ms (Views: 20.3ms | ActiveRecord: 5.7ms | Allocations: 4787)
+
+
+Started PATCH "/oauth/applications/2" for ::1 at 2022-10-16 18:58:11 +0300
+Processing by Doorkeeper::ApplicationsController#update as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "doorkeeper_application"=>{"name"=>"Accounting", "redirect_uri"=>"http://localhost:3002/auth/keepa/callback", "confidential"=>"1", "scopes"=>"public"}, "commit"=>"Submit", "id"=>"2"}
+  [1m[36mDoorkeeper::Application Load (0.5ms)[0m  [1m[34mSELECT "oauth_applications".* FROM "oauth_applications" WHERE "oauth_applications"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mDoorkeeper::Application Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "oauth_applications" WHERE "oauth_applications"."uid" = $1 AND "oauth_applications"."id" != $2 LIMIT $3[0m  [["uid", "C3IoHyjhY3_rxDQbaOW70DR5plysg6wL0HMsJLGZIBI"], ["id", 2], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/oauth/applications/2
+Completed 302 Found in 54ms (ActiveRecord: 1.5ms | Allocations: 6529)
+
+
+Started GET "/oauth/applications/2" for ::1 at 2022-10-16 18:58:11 +0300
+Processing by Doorkeeper::ApplicationsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mDoorkeeper::Application Load (0.4ms)[0m  [1m[34mSELECT "oauth_applications".* FROM "oauth_applications" WHERE "oauth_applications"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering layout /home/sjnm23/.asdf/installs/ruby/3.1.2/lib/ruby/gems/3.1.0/gems/doorkeeper-5.6.0/app/views/layouts/doorkeeper/admin.html.erb
+  Rendering /home/sjnm23/.asdf/installs/ruby/3.1.2/lib/ruby/gems/3.1.0/gems/doorkeeper-5.6.0/app/views/doorkeeper/applications/show.html.erb within layouts/doorkeeper/admin
+  Rendered /home/sjnm23/.asdf/installs/ruby/3.1.2/lib/ruby/gems/3.1.0/gems/doorkeeper-5.6.0/app/views/doorkeeper/applications/_delete_form.html.erb (Duration: 1.3ms | Allocations: 495)
+  Rendered /home/sjnm23/.asdf/installs/ruby/3.1.2/lib/ruby/gems/3.1.0/gems/doorkeeper-5.6.0/app/views/doorkeeper/applications/show.html.erb within layouts/doorkeeper/admin (Duration: 41.0ms | Allocations: 2251)
+  Rendered layout /home/sjnm23/.asdf/installs/ruby/3.1.2/lib/ruby/gems/3.1.0/gems/doorkeeper-5.6.0/app/views/layouts/doorkeeper/admin.html.erb (Duration: 43.8ms | Allocations: 3835)
+Completed 200 OK in 54ms (Views: 44.4ms | ActiveRecord: 0.4ms | Allocations: 5205)
+
+
+Started GET "/oauth/authorize?client_id=C3IoHyjhY3_rxDQbaOW70DR5plysg6wL0HMsJLGZIBI&redirect_uri=http%3A%2F%2Flocalhost%3A3002%2Fauth%2Fkeepa%2Fcallback&response_type=code&state=8205493b24e1e4369da434028db98e1a57a544bc59214d21" for ::1 at 2022-10-16 18:59:01 +0300
+Processing by Doorkeeper::AuthorizationsController#new as HTML
+  Parameters: {"client_id"=>"C3IoHyjhY3_rxDQbaOW70DR5plysg6wL0HMsJLGZIBI", "redirect_uri"=>"http://localhost:3002/auth/keepa/callback", "response_type"=>"code", "state"=>"8205493b24e1e4369da434028db98e1a57a544bc59214d21"}
+  [1m[36mAccount Load (0.6ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ config/initializers/doorkeeper.rb:11:in `block (2 levels) in <main>'
+  [1m[36mDoorkeeper::Application Load (0.4ms)[0m  [1m[34mSELECT "oauth_applications".* FROM "oauth_applications" WHERE "oauth_applications"."uid" = $1 LIMIT $2[0m  [["uid", "C3IoHyjhY3_rxDQbaOW70DR5plysg6wL0HMsJLGZIBI"], ["LIMIT", 1]]
+  [1m[36mCACHE Doorkeeper::Application Load (0.0ms)[0m  [1m[34mSELECT "oauth_applications".* FROM "oauth_applications" WHERE "oauth_applications"."uid" = $1 LIMIT $2[0m  [["uid", "C3IoHyjhY3_rxDQbaOW70DR5plysg6wL0HMsJLGZIBI"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mDoorkeeper::AccessGrant Exists? (0.8ms)[0m  [1m[34mSELECT 1 AS one FROM "oauth_access_grants" WHERE "oauth_access_grants"."token" = $1 LIMIT $2[0m  [["token", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mDoorkeeper::AccessGrant Create (0.8ms)[0m  [1m[32mINSERT INTO "oauth_access_grants" ("resource_owner_id", "application_id", "token", "expires_in", "redirect_uri", "created_at", "revoked_at", "scopes") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["resource_owner_id", 2], ["application_id", 2], ["token", "[FILTERED]"], ["expires_in", 600], ["redirect_uri", "http://localhost:3002/auth/keepa/callback"], ["created_at", "2022-10-16 15:59:01.744287"], ["revoked_at", nil], ["scopes", "public"]]
+  [1m[36mTRANSACTION (7.6ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3002/auth/keepa/callback?code=To7Jh1cPdW3T858F7KiNwGsuaLh0Do4fnGB-c889qKc&state=8205493b24e1e4369da434028db98e1a57a544bc59214d21
+Completed 302 Found in 142ms (ActiveRecord: 20.8ms | Allocations: 27881)
+
+
+Started POST "/oauth/token" for 127.0.0.1 at 2022-10-16 18:59:01 +0300
+Processing by Doorkeeper::TokensController#create as */*
+  Parameters: {"code"=>"[FILTERED]", "grant_type"=>"authorization_code", "redirect_uri"=>"http://localhost:3002/auth/keepa/callback?code=To7Jh1cPdW3T858F7KiNwGsuaLh0Do4fnGB-c889qKc&state=8205493b24e1e4369da434028db98e1a57a544bc59214d21"}
+  [1m[36mDoorkeeper::AccessGrant Load (0.4ms)[0m  [1m[34mSELECT "oauth_access_grants".* FROM "oauth_access_grants" WHERE "oauth_access_grants"."token" = $1 LIMIT $2[0m  [["token", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mDoorkeeper::Application Load (0.5ms)[0m  [1m[34mSELECT "oauth_applications".* FROM "oauth_applications" WHERE "oauth_applications"."uid" = $1 LIMIT $2[0m  [["uid", "C3IoHyjhY3_rxDQbaOW70DR5plysg6wL0HMsJLGZIBI"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mDoorkeeper::AccessGrant Load (0.7ms)[0m  [1m[37mSELECT "oauth_access_grants".* FROM "oauth_access_grants" WHERE "oauth_access_grants"."id" = $1 LIMIT $2 FOR UPDATE[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[36mDoorkeeper::AccessGrant Update (0.5ms)[0m  [1m[33mUPDATE "oauth_access_grants" SET "revoked_at" = $1 WHERE "oauth_access_grants"."id" = $2[0m  [["revoked_at", "2022-10-16 15:59:01.800842"], ["id", 10]]
+  [1m[36mDoorkeeper::Application Load (0.7ms)[0m  [1m[34mSELECT "oauth_applications".* FROM "oauth_applications" WHERE "oauth_applications"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE Doorkeeper::Application Load (0.0ms)[0m  [1m[34mSELECT "oauth_applications".* FROM "oauth_applications" WHERE "oauth_applications"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mDoorkeeper::AccessToken Exists? (0.7ms)[0m  [1m[34mSELECT 1 AS one FROM "oauth_access_tokens" WHERE "oauth_access_tokens"."token" = $1 LIMIT $2[0m  [["token", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mDoorkeeper::AccessToken Create (0.8ms)[0m  [1m[32mINSERT INTO "oauth_access_tokens" ("resource_owner_id", "application_id", "token", "refresh_token", "expires_in", "revoked_at", "created_at", "scopes", "previous_refresh_token") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["resource_owner_id", 2], ["application_id", 2], ["token", "[FILTERED]"], ["refresh_token", "[FILTERED]"], ["expires_in", 7200], ["revoked_at", nil], ["created_at", "2022-10-16 15:59:01.857792"], ["scopes", "public"], ["previous_refresh_token", "[FILTERED]"]]
+  [1m[36mTRANSACTION (7.5ms)[0m  [1m[35mCOMMIT[0m
+Completed 200 OK in 102ms (Views: 0.3ms | ActiveRecord: 16.2ms | Allocations: 26124)
+
+
+Started GET "/accounts/current.json" for 127.0.0.1 at 2022-10-16 18:59:01 +0300
+Processing by AccountsController#current as JSON
+  [1m[36mDoorkeeper::AccessToken Load (0.3ms)[0m  [1m[34mSELECT "oauth_access_tokens".* FROM "oauth_access_tokens" WHERE "oauth_access_tokens"."token" = $1 LIMIT $2[0m  [["token", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mAccount Load (0.5ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/accounts_controller.rb:106:in `current_account'
+Completed 200 OK in 9ms (Views: 0.5ms | ActiveRecord: 0.8ms | Allocations: 3147)
+
+
