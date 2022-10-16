@@ -24,6 +24,7 @@ class TasksController < ApplicationController
       account: employee
     )
 
+    # HOMEWORK 3
     event = {
       event_id: SecureRandom.uuid,
       event_version: 2,
@@ -33,6 +34,7 @@ class TasksController < ApplicationController
       data: {
         public_id: task.public_id,
         description: task.description,
+        jira_id: task.jira_id,
         account_id: task.account.public_id
       }
     }
@@ -57,6 +59,7 @@ class TasksController < ApplicationController
   def update
     task.update(status: params[:status])
 
+    # HOMEWORK 3
     event = {
       event_id: SecureRandom.uuid,
       event_version: 1,
@@ -83,13 +86,14 @@ class TasksController < ApplicationController
 
       event = {
         event_id: SecureRandom.uuid,
-        event_version: 1,
+        event_version: 2,
         event_time: Time.now.to_s,
         producer: 'auth_service',
         event_name: 'TaskAssigned',
         data: {
           public_id: task.public_id,
           description: task.description,
+          jira_id: task.jira_id,
           account_id: task.account.public_id
         }
       }
